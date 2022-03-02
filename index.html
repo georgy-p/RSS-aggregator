@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Webpack App</title>
+    </head>
+    <body>
+        <h1>RSS агрегатор</h1>
+        <h2>Начните читать RSS сегодня! Это легко, это красиво.</h2>
+        <form>
+            <input placeholder="Ссылка RSS">
+            <button>Добавить</button>
+            <p>Пример: https://ru.hexlet.io/lessons.rss</p>
+        </form>
+    </body>
+    
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker
+                    .register("service-worker.js")
+                    .then((registration) => {
+                        console.log("Service Worker registered: ", registration);
+                    })
+                    .catch((registrationError) => {
+                        console.error("Service Worker registration failed: ", registrationError);
+                    });
+            });
+        }
+    </script>
+</html>
