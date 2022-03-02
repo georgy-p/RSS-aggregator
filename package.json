@@ -1,0 +1,33 @@
+{
+  "name": "my-webpack-project",
+  "version": "1.0.0",
+  "description": "My webpack project",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test",
+    "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch",
+    "serve": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/georgy-p/frontend-project-lvl3.git"
+  },
+  "author": "Georgy Pigar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/georgy-p/frontend-project-lvl3/issues"
+  },
+  "homepage": "https://github.com/georgy-p/frontend-project-lvl3#readme",
+  "devDependencies": {
+    "@webpack-cli/generators": "^2.4.2",
+    "eslint": "^8.10.0",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4",
+    "workbox-webpack-plugin": "^6.5.0"
+  }
+}
