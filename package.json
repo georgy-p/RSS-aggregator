@@ -34,5 +34,10 @@
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4",
     "workbox-webpack-plugin": "^6.5.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "on-change": "^4.0.0",
+    "yup": "^0.32.11"
   }
 }
