@@ -1,5 +1,5 @@
 serve:
-	npx webpack serve
+		npx webpack serve
 
 build:
-	npm run build
+		npm run build
