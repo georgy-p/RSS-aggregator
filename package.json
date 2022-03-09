@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "My webpack project",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "make test",
     "build": "webpack --mode=production --node-env=production",
