@@ -1,10 +1,9 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
-
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 
 const isProduction = process.env.NODE_ENV == 'production';
 
@@ -12,7 +11,7 @@ const isProduction = process.env.NODE_ENV == 'production';
 const config = {
     entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, 'public'),
+        path: path.resolve('./', 'public'),
     },
     devServer: {
         open: true,
@@ -48,7 +47,7 @@ const config = {
     },
 };
 
-module.exports = () => {
+export default () => {
     if (isProduction) {
         config.mode = 'production';
         
