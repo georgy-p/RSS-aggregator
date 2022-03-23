@@ -37,6 +37,7 @@
     "workbox-webpack-plugin": "^6.5.0"
   },
   "dependencies": {
+    "axios": "^0.26.1",
     "i18next": "^21.6.13",
     "lodash": "^4.17.21",
     "on-change": "^4.0.0",
