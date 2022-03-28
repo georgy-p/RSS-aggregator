@@ -43,7 +43,6 @@ export default () => {
 
   const modalContainer = elements.modal.mainDiv;
   modalContainer.addEventListener('click', (e) => {
-    e.preventDefault();
     if (e.target.type === 'button') {
       watchedState.modalId = null;
     }
