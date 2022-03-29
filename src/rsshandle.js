@@ -4,6 +4,7 @@ import { watchedState } from "./render.js";
 
 let fullFeeds = [];
 let fullPosts = [];
+let downloadedData = [];
 
 const parse = (rawRss) => {
   const parser = new DOMParser();
@@ -31,16 +32,19 @@ const getContent = () => {
   links.map((link) => {
     const originLink = `https://allorigins.hexlet.app/get?disableCache=true&url=${encodeURIComponent(`${link}`)}`;
     contentData.push(axios.get(originLink)
-      .then((response) => parse(response.data.contents)));
+      .then((response) => downloadedData.push({link, response: response.data.contents})));
   });
+
   Promise.all(contentData).then(() => {
+    downloadedData.sort((a, b) => links.indexOf(a.link) - links.indexOf(b.link))
+      .forEach((link) => parse(link.response));
     watchedState.content.feeds = fullFeeds;
     watchedState.content.posts = fullPosts;
     fullFeeds = [];
     fullPosts = [];
+    downloadedData = [];
   })
-}
-
+};
 
 export default () => {
   getContent();
