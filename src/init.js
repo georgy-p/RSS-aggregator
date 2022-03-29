@@ -3,11 +3,12 @@ import ru from './locales/ru.js';
 import { setLocale } from 'yup';
 
 export const state = {
-  feedbackError: '',
+  feedbackStatus: '',
   content: {
     links: [],
     posts: [],
     feeds: [],
+    readed: [],
   },
   modalData: null,
 };
