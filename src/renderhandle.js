@@ -1,4 +1,6 @@
 import { elements } from "./init.js";
+import { watchedState } from "./render.js";
+import _ from "lodash";
 
 const getPostsContainer = () => {
   const divBorder = document.createElement('div')
@@ -16,9 +18,11 @@ const getPostContent = (post) => {
   liEl.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start', 'border-0', 'border-end-0');
   const aEl = document.createElement('a');
   const buttonEl = document.createElement('button');
-
+  const postState = _.includes(watchedState.content.readed, postTitle);
+  
   aEl.setAttribute('href', postLink);
-  aEl.classList.add('fw-bold');
+  postState ? aEl.classList.add('fw-normal', 'link-secondary') : aEl.classList.add('fw-bold');
+  //aEl.classList.add('fw-bold');
   aEl.setAttribute('data-id', id);
   aEl.setAttribute('target', '_blank');
   aEl.setAttribute('rel', 'noopener noreferrer');
