@@ -19,7 +19,7 @@ const config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html',
+            template: './index.html',
         }),
         new MiniCssExtractPlugin({
             filename: '[name].css', 
