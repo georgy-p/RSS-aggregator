@@ -1,6 +1,7 @@
 import { elements } from "./init.js";
 import { watchedState } from "./render.js";
 import _ from "lodash";
+import i18next from "i18next";
 
 const getPostsContainer = () => {
   const divBorder = document.createElement('div')
@@ -22,7 +23,6 @@ const getPostContent = (post) => {
   
   aEl.setAttribute('href', postLink);
   postState ? aEl.classList.add('fw-normal', 'link-secondary') : aEl.classList.add('fw-bold');
-  //aEl.classList.add('fw-bold');
   aEl.setAttribute('data-id', id);
   aEl.setAttribute('target', '_blank');
   aEl.setAttribute('rel', 'noopener noreferrer');
@@ -32,7 +32,7 @@ const getPostContent = (post) => {
   buttonEl.setAttribute('data-id', id);
   buttonEl.setAttribute('data-bs-toggle', 'modal');
   buttonEl.setAttribute('data-bs-target', '#modal');
-  buttonEl.textContent = 'Просмотр';
+  buttonEl.textContent = i18next.t('buttons.read');
   liEl.append(aEl);
   liEl.append(buttonEl);
   return liEl;
@@ -132,4 +132,20 @@ export const closeModal = () => {
 
   const newDivEl = document.querySelector('.modal-backdrop');
   newDivEl.remove();
+}
+
+export const renderFeedbackOk = () => {
+  elements.form.inputEl.classList.remove('is-invalid');
+  elements.feedbackEl.classList.remove('text-danger');
+  elements.feedbackEl.classList.add('text-success');
+  elements.feedbackEl.textContent = i18next.t('feedback.success');
+  elements.form.formEl.reset();
+  elements.form.formEl.focus();
+};
+
+export const renderFeedbackProblem = (problemText) => {
+  elements.form.inputEl.classList.add('is-invalid'); 
+  elements.feedbackEl.classList.add('text-danger');
+  elements.feedbackEl.textContent = problemText;
+  elements.form.formEl.focus();
 }
