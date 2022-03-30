@@ -24,18 +24,16 @@ const parse = (rawRss) => {
   });
 }
 
-
-
-const getContent = () => {
+export const getContent = () => {
   const links = watchedState.content.links;
   const contentData = [];
   links.map((link) => {
     const originLink = `https://allorigins.hexlet.app/get?disableCache=true&url=${encodeURIComponent(`${link}`)}`;
     contentData.push(axios.get(originLink)
-      .then((response) => downloadedData.push({link, response: response.data.contents})));
+      .then((response) => downloadedData.push({link, response: response.data.contents})))
   });
 
-  Promise.all(contentData).then(() => {
+  return Promise.all(contentData).then(() => {
     downloadedData.sort((a, b) => links.indexOf(a.link) - links.indexOf(b.link))
       .forEach((link) => parse(link.response));
     watchedState.content.feeds = fullFeeds;
@@ -46,6 +44,9 @@ const getContent = () => {
   })
 };
 
-export default () => {
-  getContent();
-};
+export const isValidRss = (link) => {
+  const originLink = `https://allorigins.hexlet.app/get?disableCache=true&url=${encodeURIComponent(`${link}`)}`;
+  return axios.get(originLink)
+    .then((response) => response.data.status.http_code === 200);
+}
+
