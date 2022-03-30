@@ -35,6 +35,7 @@ export const elements = {
     header: document.querySelector('.modal-title'),
     body: document.querySelector('.modal-body'),
     link: document.querySelector('#modal-link'),
+    close: document.querySelector('.btn-secondary'),
   }
   
 };
@@ -52,9 +53,11 @@ export const i18nextInit = () => i18next.init({
     ru,
   }
 }).then(() => {
-  elements.headEl.textContent = i18next.t('header')
-  elements.subheadEl.textContent = i18next.t('subheader')
-  elements.form.innerText.textContent = i18next.t('formText')
-  elements.form.button.textContent = i18next.t('addButton')
-  elements.exampleEl.textContent = i18next.t('exampleText')
+  elements.headEl.textContent = i18next.t('header');
+  elements.subheadEl.textContent = i18next.t('subheader');
+  elements.form.innerText.textContent = i18next.t('formText');
+  elements.form.button.textContent = i18next.t('buttons.add');
+  elements.exampleEl.textContent = i18next.t('exampleText');
+  elements.modal.link.textContent = i18next.t('modal.read');
+  elements.modal.close.textContent = i18next.t('modal.close');
 });
