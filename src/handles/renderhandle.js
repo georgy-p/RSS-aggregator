@@ -1,6 +1,4 @@
-import { elements } from "./elements.js";
 import _ from "lodash";
-import i18next from "i18next";
 
 const getPostsContainer = (i18next) => {
   const divBorder = document.createElement('div')
@@ -37,7 +35,7 @@ const renderPostContent = (post, readedPosts, i18next) => {
   return liEl;
 };
 
-export const renderPosts = (posts, readedPosts, i18next) => {
+export const renderPosts = (posts, readedPosts, i18next, elements) => {
   const postsEl = elements.content.posts;
   postsEl.innerHTML = '';
   const postsContainer = getPostsContainer(i18next);
@@ -79,7 +77,7 @@ const renderFeedContent = (feed) => {
   return liEl;
 }
 
-export const renderFeeds = (feeds, i18next) => {
+export const renderFeeds = (feeds, i18next, elements) => {
   const feedsEl = elements.content.feeds;
   feedsEl.innerHTML = '';
   const feedsContainer = getFeedsBar(i18next);
@@ -93,7 +91,7 @@ export const renderFeeds = (feeds, i18next) => {
   feedsEl.append(feedsContainer);
 }
 
-export const renderModal = (postData) => {
+export const renderModal = (postData, elements) => {
   const { id, postTitle, postLink, postDescription } = postData;
   const bodyEl = elements.bodyEl;
   bodyEl.classList.add('modal-open');
@@ -118,7 +116,7 @@ export const renderModal = (postData) => {
   linkEl.setAttribute('href', postLink);
 }
 
-export const closeModal = () => {
+export const closeModal = (elements) => {
   const bodyEl = elements.bodyEl;
   bodyEl.classList.remove('modal-open');
   bodyEl.setAttribute('style', '');
@@ -133,7 +131,7 @@ export const closeModal = () => {
   newDivEl.remove();
 }
 
-export const renderFeedbackOk = (i18next) => {
+export const renderFeedbackOk = (i18next, elements) => {
   elements.form.inputEl.classList.remove('is-invalid');
   elements.feedbackEl.classList.remove('text-danger');
   elements.feedbackEl.classList.add('text-success');
@@ -142,7 +140,7 @@ export const renderFeedbackOk = (i18next) => {
   elements.form.formEl.focus();
 };
 
-export const renderFeedbackProblem = (problemText, i18next) => {
+export const renderFeedbackProblem = (problemText, elements) => {
   elements.form.inputEl.classList.add('is-invalid'); 
   elements.feedbackEl.classList.add('text-danger');
   elements.feedbackEl.textContent = problemText;
