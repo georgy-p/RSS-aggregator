@@ -72,8 +72,8 @@ export default (state, i18nextInstance, elements) => {
     formContainer.addEventListener('submit', (e) => {
       e.preventDefault();
       const data = new FormData(e.target);
-      console.log(e.target);
       const link = data.get('url');
+      console.log(link);
       schemaIsValid.validate(link)
         .then(() => schemaHasDublicate.validate(link))
         .then(() => schemaHasValidRss.validate(link))
