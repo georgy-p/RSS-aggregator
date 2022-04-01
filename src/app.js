@@ -72,6 +72,7 @@ export default (state, i18nextInstance, elements) => {
     formContainer.addEventListener('submit', (e) => {
       e.preventDefault();
       const data = new FormData(e.target);
+      console.log(data);
       const link = data.get('url');
       schemaIsValid.validate(link)
         .then(() => schemaHasDublicate.validate(link))
@@ -84,7 +85,7 @@ export default (state, i18nextInstance, elements) => {
         .then(() => setTimeout(rssTimer, 5000))
         .catch((e) => {
           console.log('Alarm!');
-          console.log(e.errors);
+          console.log(e);
           watchedState.feedbackStatus = e.errors.join()
         })
       })
