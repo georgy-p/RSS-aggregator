@@ -84,6 +84,7 @@ export default (state, i18nextInstance, elements) => {
         .then(() => setTimeout(rssTimer, 5000))
         .catch((e) => {
           console.log('Alarm!');
+          console.log(e.errors);
           watchedState.feedbackStatus = e.errors.join()
         })
       })
