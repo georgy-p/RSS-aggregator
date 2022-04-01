@@ -1,11 +1,9 @@
+import './styles.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import i18next from "i18next";
 import ru from "./locales/ru.js";
 import { setLocale } from "yup";
 import app from "./app.js";
-import { elements } from "./handles/elements.js";
-import './styles.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 export default () => {
   const state = {
@@ -18,6 +16,32 @@ export default () => {
     },
     modalData: null,
   };
+
+  const elements = {
+    bodyEl: document.querySelector('body'),
+    headEl: document.querySelector('h1'),
+    subheadEl: document.querySelector('.lead'),
+    footerEl: document.querySelector('footer'),
+    form: {
+      formEl: document.querySelector('form'),
+      inputEl: document.querySelector('input'),
+      innerText: document.querySelector('label'),
+      button: document.querySelector('button.h-100'),
+    },
+    exampleEl: document.querySelector('.text-muted'),
+    feedbackEl: document.querySelector('.feedback'),
+    content: {
+      posts: document.querySelector('.posts'),
+      feeds: document.querySelector('.feeds'),
+    },
+    modal: {
+      mainDiv: document.querySelector('#modal'),
+      header: document.querySelector('.modal-title'),
+      body: document.querySelector('.modal-body'),
+      link: document.querySelector('#modal-link'),
+      close: document.querySelector('.btn-secondary'),
+    },
+  }
   
   setLocale({
     string: {
@@ -40,5 +64,5 @@ export default () => {
     elements.exampleEl.textContent = i18nextInstance.t('exampleText');
     elements.modal.link.textContent = i18nextInstance.t('modal.read');
     elements.modal.close.textContent = i18nextInstance.t('modal.close');
-  }).then(() => app(state, i18nextInstance));
+  }).then(() => app(state, i18nextInstance, elements));
 }
