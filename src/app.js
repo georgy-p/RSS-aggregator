@@ -1,4 +1,3 @@
-//import { elements } from "./handles/elements.js";
 import { string } from "yup";
 import _ from "lodash";
 import onChange from "on-change";
