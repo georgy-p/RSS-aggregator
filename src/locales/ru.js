@@ -22,5 +22,7 @@ export default {
       read: 'Читать полностью',
       close: 'Закрыть',
     },
+    posts: 'Посты',
+    feeds: 'Фиды',
   }
 };
