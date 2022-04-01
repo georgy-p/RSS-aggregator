@@ -1,8 +1,11 @@
-serve:
-		npx webpack serve
+develop:
+	npx webpack serve
 
-build:
-		npm run build
+install:
+	npm ci
+
+lint:
+	npx eslint .
 
 webpack:
 		npm run webpack
