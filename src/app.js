@@ -1,4 +1,4 @@
-import { elements } from "./handles/elements.js";
+//import { elements } from "./handles/elements.js";
 import { string } from "yup";
 import _ from "lodash";
 import onChange from "on-change";
@@ -9,29 +9,29 @@ import * as r from "./handles/renderhandle.js";
 
 
 
-export default (state, i18nextInstance) => {
+export default (state, i18nextInstance, elements) => {
   const watchedState = onChange(state, (path, value) => {
     if (path === 'feedbackStatus') {
       if (value === 'downloaded') {
-        r.renderFeedbackOk(i18nextInstance);
+        r.renderFeedbackOk(i18nextInstance, elements);
       } else {
-        r.renderFeedbackProblem(value, i18nextInstance);
+        r.renderFeedbackProblem(value, elements);
       }
     }
   
       if (path === 'content.feeds') {
-        r.renderFeeds(value, i18nextInstance);
+        r.renderFeeds(value, i18nextInstance, elements);
       }
   
       if (path === 'content.posts') {
-        r.renderPosts(value, watchedState.content.readed, i18nextInstance);
+        r.renderPosts(value, watchedState.content.readed, i18nextInstance, elements);
       }
   
       if (path === 'modalId') {
         if (value !== null) {
-          r.renderModal(value);
+          r.renderModal(value, elements);
         } else {
-          r.closeModal(value);
+          r.closeModal(elements);
         }
       }
   });
