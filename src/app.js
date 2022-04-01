@@ -73,15 +73,19 @@ export default (state, i18nextInstance, elements) => {
       e.preventDefault();
       const data = new FormData(e.target);
       const link = data.get('url');
-      console.log(link);
       schemaIsValid.validate(link)
+      .then(() => console.log('Dublicate validation'))
         .then(() => schemaHasDublicate.validate(link))
+        .then(() => console.log('isValid rss validation'))
         .then(() => schemaHasValidRss.validate(link))
+        .then(() => console.log('try to get content'))
         .then(() => {
           watchedState.content.links.push(link)
           rss.getContent(watchedState)
         })
+        .then(() => console.log('change status'))
         .then(() => watchedState.feedbackStatus = 'downloaded')
+        .then(() => console.log('try to set timer'))
         .then(() => setTimeout(rssTimer, 5000))
         .catch((e) => {
           console.log('Alarm!');
