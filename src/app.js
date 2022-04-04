@@ -14,13 +14,8 @@ export default (state, i18nextInstance, elements) => {
       if (value === 'downloaded') {
         r.renderFeedbackOk(i18nextInstance, elements);
       } else {
-        if (value.isAxiosError) {
-          const errorText = i18nextInstance.t(`feedback.errors.networkError`);
-          r.renderFeedbackProblem(errorText, elements);
-        } else {
           const errorText = i18nextInstance.t(`feedback.errors.${value}`);
           r.renderFeedbackProblem(errorText, elements);
-        }
       }
     }
       if (path === 'content.feeds') {
@@ -73,8 +68,11 @@ export default (state, i18nextInstance, elements) => {
         })
         .then(() => watchedState.feedbackStatus = 'downloaded')
         .catch((e) => {
-          console.log(e);
-          watchedState.feedbackStatus = e.errors
+          if (e.isAxiosError) {
+            watchedState.feedbackStatus = 'networkError';
+          } else {
+            watchedState.feedbackStatus = e.errors
+          }
         })
       })
 };
