@@ -13,6 +13,8 @@ export default (state, i18nextInstance, elements) => {
     if (path === 'feedbackStatus') {
       if (value === 'downloaded') {
         r.renderFeedbackOk(i18nextInstance, elements);
+      } else if (value === 'downloading') {
+        r.inputBlock(elements)
       } else {
           const errorText = i18nextInstance.t(`feedback.errors.${value}`);
           r.renderFeedbackProblem(errorText, elements);
@@ -61,6 +63,7 @@ export default (state, i18nextInstance, elements) => {
       const link = data.get('url');
       console.log(link);
       urlValidator(link, watchedState.content.links)
+        .then(() => watchedState.feedbackStatus = 'downloading')
         .then(() => console.log(`try to get content with ${link}`))
         .then(() => {
           watchedState.content.links.push(link)
