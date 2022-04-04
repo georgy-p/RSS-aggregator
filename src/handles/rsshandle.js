@@ -1,6 +1,5 @@
 import _ from "lodash";
 import axios from "axios";
-import ru from '../locales/ru.js';
 
 let fullFeeds = [];
 let fullPosts = [];
@@ -30,8 +29,8 @@ export const getContent = (watchedState) => {
   links.map((link) => {
     const originLink = `https://allorigins.hexlet.app/get?disableCache=true&url=${link}`;
     contentData.push(axios.get(originLink)
-      .then((response) => downloadedData.push({link, response: response.data.contents}))
-      .catch(() => Promise.reject(new Error('networkError'))))
+      .then((response) => downloadedData.push({link, response: response.data.contents})))
+      //.catch((error) => Promise.reject(new Error('networkError'))))
   });
 
   return Promise.all(contentData).then(() => {
