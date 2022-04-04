@@ -131,11 +131,16 @@ export const closeModal = (elements) => {
   newDivEl.remove();
 }
 
+export const inputBlock = (elements) => {
+  elements.form.inputEl.setAttribute('readonly', 'true');
+}
+
 export const renderFeedbackOk = (i18next, elements) => {
   elements.form.inputEl.classList.remove('is-invalid');
   elements.feedbackEl.classList.remove('text-danger');
   elements.feedbackEl.classList.add('text-success');
   elements.feedbackEl.textContent = i18next.t('feedback.success');
+  elements.form.inputEl.removeAttribute('readonly');
   elements.form.inputEl.value = '';
   elements.form.formEl.focus();
 };
