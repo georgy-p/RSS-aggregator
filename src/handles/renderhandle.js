@@ -132,7 +132,7 @@ export const closeModal = (elements) => {
 }
 
 export const inputBlock = (elements) => {
-  elements.form.inputEl.setAttribute('readonly', 'true');
+  elements.form.inputEl.setAttribute('readonly', true);
 }
 
 export const renderFeedbackOk = (i18next, elements) => {
