@@ -54,8 +54,6 @@ export default (state, i18nextInstance, elements) => {
       watchedState.modalId = null;
     }
   });
-
-  const rssTimer = () => rss.getContent(watchedState).then(() => setTimeout(rssTimer, 5000));
   
     const formContainer = elements.form.formEl;
     formContainer.addEventListener('submit', (e) => {
@@ -69,8 +67,6 @@ export default (state, i18nextInstance, elements) => {
           rss.getContent(watchedState)
         })
         .then(() => watchedState.feedbackStatus = 'downloaded')
-        .then(() => console.log('try to set timer'))
-        .then(() => setTimeout(rssTimer, 5000))
         .catch((e) => {
           console.log(e);
           watchedState.feedbackStatus = e.errors

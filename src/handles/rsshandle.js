@@ -41,7 +41,7 @@ export const getContent = (watchedState) => {
     fullFeeds = [];
     fullPosts = [];
     downloadedData = [];
-  })
+  }).then(() => setTimeout(() => getContent(watchedState), 5000));
 };
 
 const hasRss = (data) => {
