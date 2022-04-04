@@ -136,7 +136,7 @@ export const renderFeedbackOk = (i18next, elements) => {
   elements.feedbackEl.classList.remove('text-danger');
   elements.feedbackEl.classList.add('text-success');
   elements.feedbackEl.textContent = i18next.t('feedback.success');
-  elements.form.formEl.reset();
+  elements.form.inputEl.value = '';
   elements.form.formEl.focus();
 };
 
