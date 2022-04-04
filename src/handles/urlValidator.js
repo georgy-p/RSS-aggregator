@@ -5,7 +5,7 @@ export default (url, feedsList) => {
   const schemaUrl = yup
     .string()
     .required('notEmpty')
-    .url()
+    .url('invalid')
     .notOneOf(feedsList, 'dublicate')
     .test(
       'has-valid RSS',
