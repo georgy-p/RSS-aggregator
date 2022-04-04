@@ -43,7 +43,7 @@ export default () => {
   
   setLocale({
     string: {
-      url: ru.translation.feedback.errors.invalid,
+      url: 'invalid',
     }
   })
 
