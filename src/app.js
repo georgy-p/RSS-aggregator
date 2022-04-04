@@ -60,6 +60,7 @@ export default (state, i18nextInstance, elements) => {
       e.preventDefault();
       const data = new FormData(e.target);
       const link = data.get('url');
+      console.log(link);
       urlValidator(link, watchedState.content.links)
         .then(() => console.log(`try to get content with ${link}`))
         .then(() => {
