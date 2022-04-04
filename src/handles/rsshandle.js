@@ -1,5 +1,6 @@
 import _ from "lodash";
 import axios from "axios";
+import ru from '../locales/ru.js';
 
 let fullFeeds = [];
 let fullPosts = [];
