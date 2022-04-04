@@ -28,7 +28,7 @@ export const getContent = (watchedState) => {
   const links = watchedState.content.links;
   const contentData = [];
   links.map((link) => {
-    const originLink = `https://allorigins.hexlet.app/get?disableCache=true&url=${encodeURIComponent(`${link}`)}`;
+    const originLink = `https://allorigins.hexlet.app/get?disableCache=true&url=${link}`;
     contentData.push(axios.get(originLink)
       .then((response) => downloadedData.push({link, response: response.data.contents})))
   });
