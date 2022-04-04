@@ -19,7 +19,6 @@ export default (state, i18nextInstance, elements) => {
         }
         
       }
-    }
   
       if (path === 'content.feeds') {
         r.renderFeeds(value, i18nextInstance, elements);
