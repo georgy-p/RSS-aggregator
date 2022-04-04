@@ -1,9 +1,9 @@
-import * as yup from "yup";
 import _ from "lodash";
 import onChange from "on-change";
 import ru from "./locales/ru.js";
 import * as rss from "./handles/rsshandle.js";
 import * as r from "./handles/renderhandle.js";
+import urlValidator from "./handles/urlValidator.js";
 
 
 
@@ -55,18 +55,6 @@ export default (state, i18nextInstance, elements) => {
     }
   });
 
-  const validateUrl = (url, feedsList) => {
-    const schemaUrl = yup
-      .string()
-      .required('empty')
-      .url('invalidUrl')
-      .notOneOf(feedsList, 'dublicate');
-
-    return schemaUrl.validate(url);
-  };
-
-
-
   const rssTimer = () => rss.getContent(watchedState).then(() => setTimeout(rssTimer, 5000));
   
     const formContainer = elements.form.formEl;
@@ -74,13 +62,12 @@ export default (state, i18nextInstance, elements) => {
       e.preventDefault();
       const data = new FormData(e.target);
       const link = data.get('url');
-      validateUrl(link, watchedState.content.links)
-        .then(() => console.log('try to get content'))
+      urlValidator(link, watchedState.content.links)
+        .then(() => console.log(`try to get content with ${link}`))
         .then(() => {
           watchedState.content.links.push(link)
           rss.getContent(watchedState)
         })
-        .then(() => console.log('change status'))
         .then(() => watchedState.feedbackStatus = 'downloaded')
         .then(() => console.log('try to set timer'))
         .then(() => setTimeout(rssTimer, 5000))
