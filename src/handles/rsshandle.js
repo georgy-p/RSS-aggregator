@@ -49,12 +49,18 @@ const hasRss = (data) => {
   const rss = parser.parseFromString(data, 'text/xml');
   const rssEl = rss.querySelector('rss');
   return !!rssEl;
-
 }
 
 export const isValidRss = (link) => {
   const originLink = `https://allorigins.hexlet.app/get?disableCache=true&url=${encodeURIComponent(`${link}`)}`;
   return axios.get(originLink)
-    .then((response) => hasRss(response.data.contents));
+    .then((response) => {
+      console.log(response.status)
+      if (response.status >= 200 && response.status <= 299) {
+        return hasRss(response.data.contents);
+      } else {
+        return false;
+      }
+    })
 }
 
