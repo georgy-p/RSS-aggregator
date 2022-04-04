@@ -44,9 +44,17 @@ export const getContent = (watchedState) => {
   })
 };
 
+const hasRss = (data) => {
+  const parser = new DOMParser();
+  const rss = parser.parseFromString(data, 'text/xml');
+  const rssEl = rss.querySelector('rss');
+  return !!rssEl;
+
+}
+
 export const isValidRss = (link) => {
   const originLink = `https://allorigins.hexlet.app/get?disableCache=true&url=${encodeURIComponent(`${link}`)}`;
   return axios.get(originLink)
-    .then((response) => response.data.status.http_code === 200);
+    .then((response) => hasRss(response.data.contents));
 }
 
