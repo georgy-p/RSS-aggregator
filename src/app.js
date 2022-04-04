@@ -1,4 +1,4 @@
-import { string } from "yup";
+import * as yup from "yup";
 import _ from "lodash";
 import onChange from "on-change";
 import ru from "./locales/ru.js";
@@ -14,7 +14,8 @@ export default (state, i18nextInstance, elements) => {
       if (value === 'downloaded') {
         r.renderFeedbackOk(i18nextInstance, elements);
       } else {
-        r.renderFeedbackProblem(value, elements);
+        const errorText = i18nextInstance.t(`feedback.errors.${value}`);
+        r.renderFeedbackProblem(errorText, elements);
       }
     }
   
@@ -54,17 +55,17 @@ export default (state, i18nextInstance, elements) => {
     }
   });
 
-  const schemaIsValid = string().url();
-  const schemaHasDublicate = string().test(
-    'has-dublicate',
-    () => ru.translation.feedback.errors.dublicate,
-    (value) => !watchedState.content.links.includes(value),
-  );
-  const schemaHasValidRss = string().test(
-    'has-valid RSS',
-    () => ru.translation.feedback.errors.notValidRss,
-    (value) => rss.isValidRss(value),
-  );
+  const validateUrl = (url, feedsList) => {
+    const schemaUrl = yup
+      .string()
+      .required('empty')
+      .url('invalidUrl')
+      .notOneOf(feedsList, 'dublicate');
+
+    return schemaUrl.validate(url);
+  };
+
+
 
   const rssTimer = () => rss.getContent(watchedState).then(() => setTimeout(rssTimer, 5000));
   
@@ -73,11 +74,7 @@ export default (state, i18nextInstance, elements) => {
       e.preventDefault();
       const data = new FormData(e.target);
       const link = data.get('url');
-      schemaIsValid.validate(link)
-      .then(() => console.log('Dublicate validation'))
-        .then(() => schemaHasDublicate.validate(link))
-        .then(() => console.log('isValid rss validation'))
-        .then(() => schemaHasValidRss.validate(link))
+      validateUrl(link, watchedState.content.links)
         .then(() => console.log('try to get content'))
         .then(() => {
           watchedState.content.links.push(link)
