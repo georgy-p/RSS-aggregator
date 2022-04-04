@@ -14,8 +14,14 @@ export default (state, i18nextInstance, elements) => {
       if (value === 'downloaded') {
         r.renderFeedbackOk(i18nextInstance, elements);
       } else {
-        const errorText = i18nextInstance.t(`feedback.errors.${value}`);
-        r.renderFeedbackProblem(errorText, elements);
+        if (value.message === 'Network Error') {
+          const errorText = i18nextInstance.t(`feedback.errors.networkError`);
+          r.renderFeedbackProblem(errorText, elements);
+        } else {
+          const errorText = i18nextInstance.t(`feedback.errors.${value}`);
+          r.renderFeedbackProblem(errorText, elements);
+        }
+        
       }
     }
   
