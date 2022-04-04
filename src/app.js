@@ -72,9 +72,8 @@ export default (state, i18nextInstance, elements) => {
         .then(() => console.log('try to set timer'))
         .then(() => setTimeout(rssTimer, 5000))
         .catch((e) => {
-          console.log('Alarm!');
           console.log(e);
-          watchedState.feedbackStatus = e.errors.join()
+          watchedState.feedbackStatus = e.errors
         })
       })
 };
