@@ -24,6 +24,9 @@
   },
   "homepage": "https://github.com/georgy-p/frontend-project-lvl3#readme",
   "devDependencies": {
+    "@testing-library/dom": "^8.12.0",
+    "@testing-library/jest-dom": "^5.16.3",
+    "@testing-library/user-event": "^14.0.4",
     "@webpack-cli/generators": "^2.4.2",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.0",
@@ -33,7 +36,7 @@
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4",
-    "workbox-webpack-plugin": "^6.5.0"
+    "workbox-webpack-plugin": "^6.5.2"
   },
   "dependencies": {
     "axios": "^0.26.1",
