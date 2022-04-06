@@ -14,8 +14,8 @@ const getPostsContainer = (i18next) => {
 
 const renderPostContent = (post, readedPosts, i18next) => {
   const { id, postTitle, postLink } = post;
-  const viewLiEl = document.createElement('li');
-  viewLiEl.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start', 'border-0', 'border-end-0');
+  const postEl = document.createElement('li');
+  postEl.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start', 'border-0', 'border-end-0');
   const aEl = document.createElement('a');
   const buttonEl = document.createElement('button');
   const postState = _.includes(readedPosts, postTitle);
@@ -32,9 +32,9 @@ const renderPostContent = (post, readedPosts, i18next) => {
   buttonEl.setAttribute('data-bs-toggle', 'modal');
   buttonEl.setAttribute('data-bs-target', '#modal');
   buttonEl.textContent = i18next.t('buttons.read');
-  viewLiEl.append(aEl);
-  viewLiEl.append(buttonEl);
-  return viewLiEl;
+  postEl.append(aEl);
+  postEl.append(buttonEl);
+  return postEl;
 };
 
 export const renderPosts = (posts, readedPosts, i18next, elements) => {
@@ -44,8 +44,8 @@ export const renderPosts = (posts, readedPosts, i18next, elements) => {
   const postsList = document.createElement('ul');
   postsList.classList.add('list-group', 'border-0', 'rounded-0');
   posts.forEach((post) => {
-    const li = renderPostContent(post, readedPosts, i18next);
-    postsList.append(li);
+    const postEl = renderPostContent(post, readedPosts, i18next);
+    postsList.append(postEl);
   });
   postsContainer.append(postsList);
   postsEl.append(postsContainer);
@@ -66,17 +66,17 @@ const getFeedsBar = (i18next) => {
 
 const renderFeedContent = (feed) => {
   const { feedTitle, feedDescription } = feed;
-  const viewLiEl = document.createElement('li');
+  const postsEl = document.createElement('li');
 
-  viewLiEl.classList.add('list-group-item', 'border-0', 'rounded-0');
+  postsEl.classList.add('list-group-item', 'border-0', 'rounded-0');
   const h3El = document.createElement('h3');
   h3El.classList.add('h6', 'm-0');
   h3El.textContent = feedTitle;
   const pEl = document.createElement('p');
   pEl.classList.add('m-0', 'small', 'text-black-50');
   pEl.textContent = feedDescription;
-  viewLiEl.append(h3El, pEl);
-  return viewLiEl;
+  postsEl.append(h3El, pEl);
+  return postsEl;
 };
 
 export const renderFeeds = (feeds, i18next, elements) => {
@@ -86,8 +86,8 @@ export const renderFeeds = (feeds, i18next, elements) => {
   const feedsList = document.createElement('ul');
   feedsList.classList.add('list-group', 'border-0', 'rounded-0');
   feeds.forEach((feed) => {
-    const viewLiEl = renderFeedContent(feed);
-    feedsList.append(viewLiEl);
+    const feedEl = renderFeedContent(feed);
+    feedsList.append(feedEl);
   });
   feedsContainer.append(feedsList);
   feedsEl.append(feedsContainer);
