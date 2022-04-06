@@ -64,10 +64,9 @@ export default (state, i18nextInstance, elements) => {
       console.log(link);
       urlValidator(link, watchedState.content.links)
         .then(() => watchedState.feedbackStatus = 'downloading')
-        .then(() => console.log(`try to get content with ${link}`))
         .then(() => {
           watchedState.content.links.push(link)
-          rss.getContent(watchedState)
+          return rss.getContent(watchedState)
         })
         .then(() => watchedState.feedbackStatus = 'downloaded')
         .catch((e) => {
