@@ -55,12 +55,6 @@ const hasRss = (data) => {
 export const isValidRss = (link) => {
   const originLink = `https://allorigins.hexlet.app/get?disableCache=true&url=${encodeURIComponent(`${link}`)}`;
   return axios.get(originLink)
-    .then((response) => {
-      if (response.status >= 200 && response.status <= 299) {
-        return hasRss(response.data.contents);
-      } else {
-        return false;
-      }
-    })
+    .then((response) => hasRss(response.data.contents));
 }
 
