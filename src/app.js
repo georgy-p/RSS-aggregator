@@ -1,6 +1,5 @@
 import _ from "lodash";
 import onChange from "on-change";
-import ru from "./locales/ru.js";
 import * as rss from "./handles/rsshandle.js";
 import * as r from "./handles/renderhandle.js";
 import urlValidator from "./handles/urlValidator.js";
