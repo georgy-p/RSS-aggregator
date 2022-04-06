@@ -1,9 +1,11 @@
-import _ from "lodash";
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-unused-expressions */
+import _ from 'lodash';
 
 const getPostsContainer = (i18next) => {
-  const divBorder = document.createElement('div')
+  const divBorder = document.createElement('div');
   divBorder.classList.add('card', 'border-0');
-  const divCardHeader = document.createElement('div')
+  const divCardHeader = document.createElement('div');
   divCardHeader.classList.add('card-body');
   divCardHeader.innerHTML = `<h2 class="card-title h4">${i18next.t('posts')}</h2>`;
   divBorder.append(divCardHeader);
@@ -17,7 +19,7 @@ const renderPostContent = (post, readedPosts, i18next) => {
   const aEl = document.createElement('a');
   const buttonEl = document.createElement('button');
   const postState = _.includes(readedPosts, postTitle);
-  
+
   aEl.setAttribute('href', postLink);
   postState ? aEl.classList.add('fw-normal', 'link-secondary') : aEl.classList.add('fw-bold');
   aEl.setAttribute('data-id', id);
@@ -39,7 +41,7 @@ export const renderPosts = (posts, readedPosts, i18next, elements) => {
   const postsEl = elements.content.posts;
   postsEl.innerHTML = '';
   const postsContainer = getPostsContainer(i18next);
-  const postsList = document.createElement('ul')
+  const postsList = document.createElement('ul');
   postsList.classList.add('list-group', 'border-0', 'rounded-0');
   posts.forEach((post) => {
     const liEl = renderPostContent(post, readedPosts, i18next);
@@ -47,7 +49,7 @@ export const renderPosts = (posts, readedPosts, i18next, elements) => {
   });
   postsContainer.append(postsList);
   postsEl.append(postsContainer);
-}
+};
 
 const getFeedsBar = (i18next) => {
   const divBorder = document.createElement('div');
@@ -60,7 +62,7 @@ const getFeedsBar = (i18next) => {
   divBody.append(h2El);
   divBorder.append(divBody);
   return divBorder;
-}
+};
 
 const renderFeedContent = (feed) => {
   const { feedTitle, feedDescription } = feed;
@@ -75,13 +77,13 @@ const renderFeedContent = (feed) => {
   pEl.textContent = feedDescription;
   liEl.append(h3El, pEl);
   return liEl;
-}
+};
 
 export const renderFeeds = (feeds, i18next, elements) => {
   const feedsEl = elements.content.feeds;
   feedsEl.innerHTML = '';
   const feedsContainer = getFeedsBar(i18next);
-  const feedsList = document.createElement('ul')
+  const feedsList = document.createElement('ul');
   feedsList.classList.add('list-group', 'border-0', 'rounded-0');
   feeds.forEach((feed) => {
     const liEl = renderFeedContent(feed);
@@ -89,11 +91,13 @@ export const renderFeeds = (feeds, i18next, elements) => {
   });
   feedsContainer.append(feedsList);
   feedsEl.append(feedsContainer);
-}
+};
 
 export const renderModal = (postData, elements) => {
-  const { id, postTitle, postLink, postDescription } = postData;
-  const bodyEl = elements.bodyEl;
+  const {
+    id, postTitle, postLink, postDescription,
+  } = postData;
+  const { bodyEl } = elements;
   bodyEl.classList.add('modal-open');
   bodyEl.setAttribute('style', 'overflow: hidden; padding-right: 0px;');
   const newDiv = document.createElement('div');
@@ -114,10 +118,10 @@ export const renderModal = (postData, elements) => {
   elements.modal.body.textContent = postDescription;
   const linkEl = elements.modal.link;
   linkEl.setAttribute('href', postLink);
-}
+};
 
 export const closeModal = (elements) => {
-  const bodyEl = elements.bodyEl;
+  const { bodyEl } = elements;
   bodyEl.classList.remove('modal-open');
   bodyEl.setAttribute('style', '');
 
@@ -129,19 +133,19 @@ export const closeModal = (elements) => {
 
   const newDivEl = document.querySelector('.modal-backdrop');
   newDivEl.remove();
-}
+};
 
 export const invalidUrl = (problemText, elements) => {
   elements.feedbackEl.classList.add('text-danger');
   elements.feedbackEl.textContent = problemText;
   elements.form.button.disabled = false;
   elements.form.inputEl.removeAttribute('readonly');
-}
+};
 
 export const inputBlock = (elements) => {
   elements.form.inputEl.setAttribute('readonly', true);
   elements.form.button.disabled = true;
-}
+};
 
 export const renderFeedbackOk = (i18next, elements) => {
   elements.form.inputEl.classList.remove('is-invalid');
@@ -152,12 +156,11 @@ export const renderFeedbackOk = (i18next, elements) => {
   elements.form.inputEl.removeAttribute('readonly');
   elements.form.inputEl.value = '';
   elements.form.formEl.focus();
-  
 };
 
 export const renderFeedbackProblem = (problemText, elements) => {
-  elements.form.inputEl.classList.add('is-invalid'); 
+  elements.form.inputEl.classList.add('is-invalid');
   elements.feedbackEl.classList.add('text-danger');
   elements.feedbackEl.textContent = problemText;
   elements.form.formEl.focus();
-}
+};

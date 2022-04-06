@@ -1,7 +1,7 @@
-import i18next from "i18next";
-import ru from "./locales/ru.js";
-import { setLocale } from "yup";
-import app from "./app.js";
+import i18next from 'i18next';
+import { setLocale } from 'yup';
+import ru from './locales/ru.js';
+import app from './app.js';
 
 export default () => {
   const state = {
@@ -39,13 +39,13 @@ export default () => {
       link: document.querySelector('#modal-link'),
       close: document.querySelector('.btn-secondary'),
     },
-  }
-  
+  };
+
   setLocale({
     string: {
       url: 'invalid',
-    }
-  })
+    },
+  });
 
   const i18nextInstance = i18next.createInstance();
   i18nextInstance.init({
@@ -53,7 +53,7 @@ export default () => {
     debug: false,
     resources: {
       ru,
-    }
+    },
   }).then(() => {
     elements.headEl.textContent = i18nextInstance.t('header');
     elements.subheadEl.textContent = i18nextInstance.t('subheader');
@@ -63,4 +63,4 @@ export default () => {
     elements.modal.link.textContent = i18nextInstance.t('modal.read');
     elements.modal.close.textContent = i18nextInstance.t('modal.close');
   }).then(() => app(state, i18nextInstance, elements));
-}
+};

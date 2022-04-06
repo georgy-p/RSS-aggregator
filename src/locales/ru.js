@@ -24,5 +24,5 @@ export default {
     },
     posts: 'Посты',
     feeds: 'Фиды',
-  }
+  },
 };
