@@ -32,7 +32,8 @@ export const getContent = (watchedState) => {
       .then((response) => downloadedData.push({link, response: response.data.contents})))
   });
 
-  return Promise.all(contentData).then(() => {
+  return Promise.all(contentData)
+    .then(() => {
     downloadedData.sort((a, b) => links.indexOf(a.link) - links.indexOf(b.link))
       .forEach((link) => parse(link.response));
     watchedState.content.feeds = fullFeeds;
@@ -40,7 +41,8 @@ export const getContent = (watchedState) => {
     fullFeeds = [];
     fullPosts = [];
     downloadedData = [];
-  }).then(() => setTimeout(() => getContent(watchedState), 5000));
+  })
+  .then(() => setTimeout(() => getContent(watchedState), 5000));
 };
 
 const hasRss = (data) => {
