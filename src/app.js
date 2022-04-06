@@ -2,7 +2,7 @@ import _ from "lodash";
 import onChange from "on-change";
 import * as rss from "./handles/rsshandle.js";
 import * as r from "./handles/renderhandle.js";
-import urlValidator from "./handles/urlValidator.js";
+import { urlValidator, rssValidator } from "./handles/urlValidator.js";
 
 
 
@@ -14,6 +14,9 @@ export default (state, i18nextInstance, elements) => {
         r.renderFeedbackOk(i18nextInstance, elements);
       } else if (value === 'downloading') {
         r.inputBlock(elements)
+      } else if (value === 'invalidUrl') {
+        const errorText = i18nextInstance.t(`feedback.errors.${value}`);
+        r.invalidUrl(errorText, elements)
       } else {
           const errorText = i18nextInstance.t(`feedback.errors.${value}`);
           r.renderFeedbackProblem(errorText, elements);
@@ -63,6 +66,7 @@ export default (state, i18nextInstance, elements) => {
       console.log(link);
       urlValidator(link, watchedState.content.links)
         .then(() => watchedState.feedbackStatus = 'downloading')
+        .then(() => rssValidator(link))
         .then(() => {
           watchedState.content.links.push(link)
           return rss.getContent(watchedState)
@@ -71,6 +75,8 @@ export default (state, i18nextInstance, elements) => {
         .catch((e) => {
           if (e.isAxiosError) {
             watchedState.feedbackStatus = 'networkError';
+          } else if (e.message === 'invalidUrl') {
+            watchedState.feedbackStatus = 'invalidUrl';
           } else {
             watchedState.feedbackStatus = e.errors
           }
