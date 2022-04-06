@@ -133,7 +133,7 @@ export const closeModal = (elements) => {
 
 export const inputBlock = (elements) => {
   elements.form.inputEl.setAttribute('readonly', true);
-  elements.form.button.classList.disabled = true;
+  elements.form.button.disabled = true;
 }
 
 export const renderFeedbackOk = (i18next, elements) => {
@@ -141,7 +141,7 @@ export const renderFeedbackOk = (i18next, elements) => {
   elements.feedbackEl.classList.remove('text-danger');
   elements.feedbackEl.classList.add('text-success');
   elements.feedbackEl.textContent = i18next.t('feedback.success');
-  elements.form.button.classList.disabled = false;
+  elements.form.button.disabled = false;
   elements.form.inputEl.removeAttribute('readonly');
   elements.form.inputEl.value = '';
   elements.form.formEl.focus();
