@@ -44,8 +44,8 @@ export const renderPosts = (posts, readedPosts, i18next, elements) => {
   const postsList = document.createElement('ul');
   postsList.classList.add('list-group', 'border-0', 'rounded-0');
   posts.forEach((post) => {
-    const postEl = renderPostContent(post, readedPosts, i18next);
-    postsList.append(postEl);
+    const view = renderPostContent(post, readedPosts, i18next);
+    postsList.append(view);
   });
   postsContainer.append(postsList);
   postsEl.append(postsContainer);
@@ -86,8 +86,8 @@ export const renderFeeds = (feeds, i18next, elements) => {
   const feedsList = document.createElement('ul');
   feedsList.classList.add('list-group', 'border-0', 'rounded-0');
   feeds.forEach((feed) => {
-    const feedEl = renderFeedContent(feed);
-    feedsList.append(feedEl);
+    const view = renderFeedContent(feed);
+    feedsList.append(view);
   });
   feedsContainer.append(feedsList);
   feedsEl.append(feedsContainer);
