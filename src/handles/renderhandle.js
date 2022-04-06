@@ -131,6 +131,13 @@ export const closeModal = (elements) => {
   newDivEl.remove();
 }
 
+export const invalidUrl = (problemText, elements) => {
+  elements.feedbackEl.classList.add('text-danger');
+  elements.feedbackEl.textContent = problemText;
+  elements.form.button.disabled = false;
+  elements.form.inputEl.removeAttribute('readonly');
+}
+
 export const inputBlock = (elements) => {
   elements.form.inputEl.setAttribute('readonly', true);
   elements.form.button.disabled = true;
