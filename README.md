@@ -4,7 +4,4 @@
 
 <a href="https://codeclimate.com/github/georgy-p/frontend-project-lvl3/maintainability"><img src="https://api.codeclimate.com/v1/badges/2db48a60f1b70beb2ab1/maintainability" /></a>
 
-<a href="https://codeclimate.com/github/georgy-p/frontend-project-lvl3/test_coverage"><img src="https://api.codeclimate.com/v1/badges/2db48a60f1b70beb2ab1/test_coverage" /></a>
-
-Vercel.app
-https://frontend-project-lvl3-georgy-p.vercel.app/)
+Try it <a href="https://frontend-project-lvl3-georgy-p.vercel.app/">here</a>
