@@ -8,7 +8,7 @@ Try it <a href="https://frontend-project-lvl3-georgy-p.vercel.app/">here</a>
 
 # About
 
-RSS-agregator is an online service for aggregating RSS-feeds that makes it easier to read various sources. The service updates and adds new records into the common thread.
+RSS-aggregator is an online service for aggregating RSS-feeds that makes it easier to read various sources. The service updates and adds new records into the common thread.
 
 ### Example
 
